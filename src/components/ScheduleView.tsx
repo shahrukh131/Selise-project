@@ -1,9 +1,9 @@
-import { Box, Button, Tab, Tabs } from "@mui/material";
+
 import React, { useEffect, useState } from "react";
 import { WeekTabs } from "./WeekTabs";
 import { ScheduleTable } from "./ScheduleTable";
 import { initialSchedule, venues } from "../data";
-import { Info, Plus } from "lucide-react";
+
 import ScheduleModal from "./ScheduleModal";
 
 const ScheduleView = () => {
@@ -49,7 +49,7 @@ const ScheduleView = () => {
   const weekDays = generateWeekDays();
   const timeSlots = generateTimeSlots();
 
-  const handleTabChange = (event: any, newValue: any) => {
+  const handleTabChange = ( newValue: any) => {
     setSelectedDay(newValue);
   };
 

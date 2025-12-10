@@ -1,9 +1,6 @@
 import { Event } from "./Event";
 import { EmptyCell } from "./EmptyCell";
 import type { VenueCellProps } from "../types";
-import { Tooltip } from "@mui/material";
-
-
 
 export const VenueCell = ({
   venue,
@@ -12,7 +9,7 @@ export const VenueCell = ({
   isEventStart,
   calculateRowSpan,
   selectedDate,
-  handleCellClick
+  handleCellClick,
 }: VenueCellProps) => {
   if (event && isEventStart(event, time)) {
     const isFirstVenue = event.venueIds[0] === venue.id;
@@ -26,16 +23,12 @@ export const VenueCell = ({
     return null;
   } else {
     return (
-
-
-        <EmptyCell
-          venueName={venue.name}
-          time={time}
-          date={selectedDate}
-  
-           onClick={() => handleCellClick(venue.id, time)}
-        />
-      
+      <EmptyCell
+        venueName={venue.name}
+        time={time}
+        date={selectedDate}
+        onClick={() => handleCellClick(venue.id, time)}
+      />
     );
   }
 };

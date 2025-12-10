@@ -2,9 +2,6 @@ import { Tooltip } from "@mui/material";
 import type { EmptyCellProps } from "../types";
 
 export const EmptyCell = ({
-  venueName,
-  time,
-  date,
   onClick,
 }: EmptyCellProps) => {
   return (
