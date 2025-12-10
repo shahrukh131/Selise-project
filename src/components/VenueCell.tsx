@@ -1,6 +1,7 @@
 import { Event } from "./Event";
 import { EmptyCell } from "./EmptyCell";
 import type { VenueCellProps } from "../types";
+import { Tooltip } from "@mui/material";
 
 
 
@@ -25,15 +26,16 @@ export const VenueCell = ({
     return null;
   } else {
     return (
-      <EmptyCell
-        venueName={venue.name}
-        time={time}
-        date={selectedDate}
-        // onClick={() => {
-        //   console.log(`Clicked: ${venue.name} at ${time} on ${selectedDate}`);
-        // }}
-         onClick={() => handleCellClick(venue.id, time)}
-      />
+
+
+        <EmptyCell
+          venueName={venue.name}
+          time={time}
+          date={selectedDate}
+  
+           onClick={() => handleCellClick(venue.id, time)}
+        />
+      
     );
   }
 };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { WeekTabs } from "./WeekTabs";
 import { ScheduleTable } from "./ScheduleTable";
 import { initialSchedule, venues } from "../data";
-import { Plus } from "lucide-react";
+import { Info, Plus } from "lucide-react";
 import ScheduleModal from "./ScheduleModal";
 
 const ScheduleView = () => {
@@ -121,6 +121,7 @@ const ScheduleView = () => {
 
   return (
     <>
+   
       <div className="flex justify-center bg-gray-50 min-h-screen py-6">
         <div className="flex flex-col max-w-[1200px] w-full h-[600px] bg-white shadow rounded-lg overflow-hidden">
           <WeekTabs
