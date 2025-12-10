@@ -53,7 +53,6 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     selectedVenue ? [selectedVenue] : []
   );
 
-  // Generate time slots for dropdown
   const generateTimeOptions = () => {
     const options = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -69,7 +68,6 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
 
   const timeOptions = generateTimeOptions();
 
-  // Generate days of the week for dropdown
   const daysOfWeek = [
     "Monday",
     "Tuesday",
@@ -93,10 +91,10 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
       const [hours, minutes] = selectedTimeSlot.split(":").map(Number);
       const endDate = new Date();
       endDate.setHours(hours, minutes + 30);
-      const endTimeStr = `${endDate.getHours().toString().padStart(2, "0")}:${endDate
-        .getMinutes()
+      const endTimeStr = `${endDate
+        .getHours()
         .toString()
-        .padStart(2, "0")}`;
+        .padStart(2, "0")}:${endDate.getMinutes().toString().padStart(2, "0")}`;
       setEndTime(endTimeStr);
     }
   }, [selectedVenue, selectedDay, selectedTimeSlot]);
@@ -111,7 +109,13 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !selectedDayName || !startTime || !endTime || selectedVenues.length === 0) {
+    if (
+      !title ||
+      !selectedDayName ||
+      !startTime ||
+      !endTime ||
+      selectedVenues.length === 0
+    ) {
       alert("Please fill in all required fields");
       return;
     }
@@ -122,7 +126,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     }
 
     const newEvent = {
-      id: Date.now(), // Simple ID generation
+      id: Date.now(),
       title,
       day: selectedDayName,
       startTime,
@@ -162,7 +166,12 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
           p: 4,
         }}
       >
-        <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={3}
+        >
           <Typography variant="h5" component="h2" fontWeight="bold">
             Create New Schedule
           </Typography>
@@ -173,103 +182,111 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
 
         <form onSubmit={handleSubmit}>
           <Grid container spacing={3}>
-            {/* <Grid item xs={12}> */}
-              <TextField
-                fullWidth
-                label="Event Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-                variant="outlined"
-              />
-            {/* </Grid> */}
+            <TextField
+              fullWidth
+              label="Event Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              variant="outlined"
+            />
 
-            {/* <Grid item xs={12}> */}
-              <FormControl fullWidth required>
-                <InputLabel>Day</InputLabel>
-                <Select
-                  value={selectedDayName}
-                  label="Day"
-                  onChange={(e) => setSelectedDayName(e.target.value)}
-                >
-                  {daysOfWeek.map((day) => (
-                    <MenuItem key={day} value={day}>
-                      {day}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            {/* </Grid> */}
+            <FormControl fullWidth required>
+              <InputLabel>Day</InputLabel>
+              <Select
+                value={selectedDayName}
+                label="Day"
+                onChange={(e) => setSelectedDayName(e.target.value)}
+              >
+                {daysOfWeek.map((day) => (
+                  <MenuItem key={day} value={day}>
+                    {day}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-            {/* <Grid item xs={6}> */}
-              <FormControl fullWidth required>
-                <InputLabel>Start Time</InputLabel>
-                <Select
-                  value={startTime}
-                  label="Start Time"
-                  onChange={(e) => setStartTime(e.target.value)}
-                >
-                  {timeOptions.map((time) => (
-                    <MenuItem key={time} value={time}>
-                      {time}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            {/* </Grid> */}
+            <FormControl fullWidth required>
+              <InputLabel>Start Time</InputLabel>
+              <Select
+                value={startTime}
+                label="Start Time"
+                onChange={(e) => setStartTime(e.target.value)}
+              >
+                {timeOptions.map((time) => (
+                  <MenuItem key={time} value={time}>
+                    {time}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-            {/* <Grid item xs={6}> */}
-              <FormControl fullWidth required>
-                <InputLabel>End Time</InputLabel>
-                <Select
-                  value={endTime}
-                  label="End Time"
-                  onChange={(e) => setEndTime(e.target.value)}
-                >
-                  {timeOptions.map((time) => (
-                    <MenuItem key={time} value={time} disabled={time <= startTime}>
-                      {time}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            {/* </Grid> */}
+            <FormControl fullWidth required>
+              <InputLabel>End Time</InputLabel>
+              <Select
+                value={endTime}
+                label="End Time"
+                onChange={(e) => setEndTime(e.target.value)}
+              >
+                {timeOptions.map((time) => (
+                  <MenuItem
+                    key={time}
+                    value={time}
+                    disabled={time <= startTime}
+                  >
+                    {time}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-            {/* <Grid item xs={12}> */}
-              <Typography variant="subtitle1" gutterBottom>
-                Select Venues
-              </Typography>
-              <FormGroup>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  {venues.map((venue) => (
-                    <Chip
-                      key={venue.id}
-                      label={venue.name}
-                      onClick={() => handleVenueToggle(venue.id)}
-                      color={selectedVenues.includes(venue.id) ? "primary" : "default"}
-                      variant={selectedVenues.includes(venue.id) ? "filled" : "outlined"}
-                      sx={{ m: 0.5 }}
-                    />
-                  ))}
-                </Box>
-              </FormGroup>
-              {selectedVenue && (
-                <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
-                  * Venue {venues.find(v => v.id === selectedVenue)?.name} is pre-selected
-                </Typography>
-              )}
-            {/* </Grid> */}
-
-            {/* <Grid item xs={12}> */}
-              <Box sx={{ display: "flex", gap: 2, justifyContent: "flex-end", mt: 2 }}>
-                <Button variant="outlined" onClick={handleClose}>
-                  Cancel
-                </Button>
-                <Button type="submit" variant="contained" color="primary">
-                  Create Schedule
-                </Button>
+            <Typography variant="subtitle1" gutterBottom>
+              Select Venues
+            </Typography>
+            <FormGroup>
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                {venues.map((venue) => (
+                  <Chip
+                    key={venue.id}
+                    label={venue.name}
+                    onClick={() => handleVenueToggle(venue.id)}
+                    color={
+                      selectedVenues.includes(venue.id) ? "primary" : "default"
+                    }
+                    variant={
+                      selectedVenues.includes(venue.id) ? "filled" : "outlined"
+                    }
+                    sx={{ m: 0.5 }}
+                  />
+                ))}
               </Box>
-            {/* </Grid> */}
+            </FormGroup>
+            {selectedVenue && (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ mt: 1, display: "block" }}
+              >
+                * Venue {venues.find((v) => v.id === selectedVenue)?.name} is
+                pre-selected
+              </Typography>
+            )}
+
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+                justifyContent: "flex-end",
+                mt: 2,
+              }}
+            >
+              <Button variant="outlined" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Create Schedule
+              </Button>
+            </Box>
           </Grid>
         </form>
       </Box>
