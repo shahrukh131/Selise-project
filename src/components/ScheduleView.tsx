@@ -38,7 +38,7 @@ const ScheduleView = () => {
   };
 
   const [selectedDay, setSelectedDay] = useState(0);
-    const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedVenue, setSelectedVenue] = useState<number | null>(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
   const [events, setEvents] = useState(() => {
@@ -78,19 +78,22 @@ const ScheduleView = () => {
     return endIndex - startIndex;
   };
 
- const handleCellClick = (venueId: number, timeSlot: string) => {
+  const handleCellClick = (venueId: number, timeSlot: string) => {
     console.log("hello");
-    
+
     // Check if time slot is already occupied
     const isOccupied = events.some((event: any) => {
       const dayMatches = event.day === weekDays[selectedDay].dayName;
       const venueMatches = event.venueIds.includes(venueId);
-      const timeOverlaps = timeSlot >= event.startTime && timeSlot < event.endTime;
+      const timeOverlaps =
+        timeSlot >= event.startTime && timeSlot < event.endTime;
       return dayMatches && venueMatches && timeOverlaps;
     });
 
     if (isOccupied) {
-      alert("This time slot is already occupied. Please select another time slot.");
+      alert(
+        "This time slot is already occupied. Please select another time slot."
+      );
       return;
     }
 
@@ -99,20 +102,17 @@ const ScheduleView = () => {
     setModalOpen(true);
   };
 
-
   const handleAddEvent = (newEvent: any) => {
     const updatedEvents = [...events, newEvent];
     setEvents(updatedEvents);
-    
+
     localStorage.setItem("scheduleEvents", JSON.stringify(updatedEvents));
-    
+
     setModalOpen(false);
-    
 
     setSelectedVenue(null);
     setSelectedTimeSlot(null);
-    
- 
+
     console.log("Event added successfully:", newEvent);
   };
   useEffect(() => {
@@ -121,7 +121,6 @@ const ScheduleView = () => {
 
   return (
     <>
-     
       <div className="flex justify-center bg-gray-50 min-h-screen py-6">
         <div className="flex flex-col max-w-[1200px] w-full h-[600px] bg-white shadow rounded-lg overflow-hidden">
           <WeekTabs
@@ -139,15 +138,15 @@ const ScheduleView = () => {
             selectedDate={weekDays[selectedDay].fullDate}
             handleCellClick={handleCellClick}
           />
-         <ScheduleModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        selectedVenue={selectedVenue}
-        selectedDay={weekDays[selectedDay]}
-        selectedTimeSlot={selectedTimeSlot}
-        venues={venues}
-        onSubmit={handleAddEvent}
-      />
+          <ScheduleModal
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+            selectedVenue={selectedVenue}
+            selectedDay={weekDays[selectedDay]}
+            selectedTimeSlot={selectedTimeSlot}
+            venues={venues}
+            onSubmit={handleAddEvent}
+          />
         </div>
       </div>
     </>
