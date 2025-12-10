@@ -32,8 +32,8 @@ export const WeekTabs = ({ weekDays, selectedDay, onTabChange }: WeekTabsProps) 
             key={day.id}
             label={
               <div className="flex flex-col items-center py-1">
-                <span className="text-xl font-semibold">{day.dayName}</span>
-                <span className="text-2xl font-semibold">Date: {day.fullDate}</span>
+                <span className="text-xl font-semibold">{day?.dayName}</span>
+                <span className="text-2xl font-semibold">Date: {day?.fullDate}</span>
               </div>
             }
           />

@@ -136,7 +136,7 @@ const ScheduleView = () => {
             getEventAtTimeSlot={getEventAtTimeSlot}
             isEventStart={isEventStart}
             calculateRowSpan={calculateRowSpan}
-            selectedDate={weekDays[selectedDay].fullDate}
+            selectedDate={weekDays[selectedDay]?.fullDate}
             handleCellClick={handleCellClick}
           />
           <ScheduleModal
