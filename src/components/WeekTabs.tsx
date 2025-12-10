@@ -8,7 +8,7 @@ export const WeekTabs = ({ weekDays, selectedDay, onTabChange }: WeekTabsProps) 
     <Box sx={{ borderBottom: 1, borderColor: "divider", bgcolor: "white" }}>
       <Tabs
         value={selectedDay}
-        onChange={onTabChange}
+        onChange={(event, newValue) => onTabChange(event,newValue)} 
         variant="scrollable"
         scrollButtons="auto"
         sx={{

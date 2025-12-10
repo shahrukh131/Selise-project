@@ -49,9 +49,9 @@ const ScheduleView = () => {
   const weekDays = generateWeekDays();
   const timeSlots = generateTimeSlots();
 
-  const handleTabChange = ( newValue: any) => {
-    setSelectedDay(newValue);
-  };
+const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  setSelectedDay(newValue);
+};
 
   const getEventsForDayAndVenue = (venueId: number) => {
     const selectedDayName = weekDays[selectedDay]?.dayName;
