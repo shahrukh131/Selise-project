@@ -54,7 +54,7 @@ const ScheduleView = () => {
   };
 
   const getEventsForDayAndVenue = (venueId: number) => {
-    const selectedDayName = weekDays[selectedDay].dayName;
+    const selectedDayName = weekDays[selectedDay]?.dayName;
     return events.filter(
       (event: any) =>
         event.day === selectedDayName && event.venueIds.includes(venueId)
