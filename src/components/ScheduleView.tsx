@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { WeekTabs } from "./WeekTabs";
 import { ScheduleTable } from "./ScheduleTable";
 import { initialSchedule, venues } from "../data";
