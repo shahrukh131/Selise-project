@@ -5,6 +5,7 @@
     { id: 4, name: "Venue 4" },
     { id: 5, name: "Venue 5" },
     { id: 6, name: "Venue 6" },
+    { id: 7, name: "Venue 7" },
   ];
 
   export const initialSchedule=[

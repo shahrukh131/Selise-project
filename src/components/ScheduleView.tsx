@@ -125,7 +125,7 @@ const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     <>
    
       <div className="flex justify-center bg-gray-50 min-h-screen py-6">
-        <div className="flex flex-col max-w-[1200px] w-full h-[600px] bg-white shadow rounded-lg overflow-hidden">
+        <div className="flex flex-col max-w-[1200px] w-full h-[600px] bg-white shadow rounded-lg overflow-auto">
           <WeekTabs
             weekDays={weekDays}
             selectedDay={selectedDay}

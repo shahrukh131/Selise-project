@@ -9,16 +9,14 @@ export const ScheduleTable = ({
   isEventStart,
   calculateRowSpan,
   selectedDate,
-  handleCellClick
+  handleCellClick,
 }: ScheduleTableProps) => {
   return (
-    <div className="flex-1 overflow-auto">
-      <table className="w-full border-collapse table-fixed">
+    <div className="flex-1 overflow-auto overflow-x-auto">
+      <table className="w-full border-collapse ">
         <thead className="sticky top-0 z-10 bg-white shadow-sm">
           <tr>
-            <th className="w-24 h-14 border-r border-b border-gray-300 bg-gray-50 font-semibold text-sm sticky left-0 top-0 z-20">
-              
-            </th>
+            <th className="w-24 h-14 border-r border-b border-gray-300 bg-gray-50 font-semibold text-sm sticky left-0 top-0 z-20"></th>
             {venues.map((venue) => (
               <th
                 key={venue.id}
