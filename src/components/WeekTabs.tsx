@@ -23,7 +23,7 @@ export const WeekTabs = ({ weekDays, selectedDay, onTabChange }: WeekTabsProps) 
           },
           "& .Mui-selected": {
             backgroundColor: "rgb(106,114,130)",
-            color: "white",
+            color: "white !important",
           },
         }}
       >

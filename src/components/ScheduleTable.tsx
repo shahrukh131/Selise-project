@@ -9,6 +9,7 @@ export const ScheduleTable = ({
   isEventStart,
   calculateRowSpan,
   selectedDate,
+  handleCellClick
 }: ScheduleTableProps) => {
   return (
     <div className="flex-1 overflow-auto">
@@ -43,6 +44,7 @@ export const ScheduleTable = ({
                     isEventStart={isEventStart}
                     calculateRowSpan={calculateRowSpan}
                     selectedDate={selectedDate}
+                    handleCellClick={handleCellClick}
                   />
                 );
               })}

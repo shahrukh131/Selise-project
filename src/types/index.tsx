@@ -35,6 +35,7 @@ export interface VenueCellProps {
   isEventStart: (event: any, time: string) => boolean;
   calculateRowSpan: (event: any) => number;
   selectedDate: string;
+  handleCellClick: (venueId: number, timeSlot: string) => void;
 }
 
 export interface ScheduleTableProps {
@@ -44,4 +45,5 @@ export interface ScheduleTableProps {
   isEventStart: (event: any, timeSlot: string) => boolean;
   calculateRowSpan: (event: any) => number;
   selectedDate: string;
+  handleCellClick: (venueId: number, timeSlot: string) => void;
 }

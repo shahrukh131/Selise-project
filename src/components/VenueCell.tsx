@@ -11,6 +11,7 @@ export const VenueCell = ({
   isEventStart,
   calculateRowSpan,
   selectedDate,
+  handleCellClick
 }: VenueCellProps) => {
   if (event && isEventStart(event, time)) {
     const isFirstVenue = event.venueIds[0] === venue.id;
@@ -28,9 +29,10 @@ export const VenueCell = ({
         venueName={venue.name}
         time={time}
         date={selectedDate}
-        onClick={() => {
-          console.log(`Clicked: ${venue.name} at ${time} on ${selectedDate}`);
-        }}
+        // onClick={() => {
+        //   console.log(`Clicked: ${venue.name} at ${time} on ${selectedDate}`);
+        // }}
+         onClick={() => handleCellClick(venue.id, time)}
       />
     );
   }
