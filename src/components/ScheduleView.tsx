@@ -50,6 +50,8 @@ const ScheduleView = () => {
   const timeSlots = generateTimeSlots();
 
 const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    console.log(event);
+    
   setSelectedDay(newValue);
 };
 
